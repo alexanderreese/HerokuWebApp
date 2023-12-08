@@ -1,7 +1,6 @@
 # HerokuWebApp
 
 Website: https://ajreese1-finalproject-0c860333516f.herokuapp.com/ 
-Project Repo: https://github.com/alexanderreese/HerokuWebApp 
 
 ## 1. Introduction
 This report outlines the process of deploying a TensorFlow Convolutional Neural Network (CNN) model, trained on the MNIST dataset, using Heroku as a platform. The deployment includes a web interface for user interaction, allowing users to draw a digit and receive a prediction from the model.
