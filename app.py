@@ -13,7 +13,7 @@ app = Flask(__name__)
 model = None
 try:
     model_path = os.path.join('mysite', 'my_model.keras')
-    model = load_model('my_model.keras')
+    model = load_model('my_model.h5')
 except Exception as e:
     print(f"Error loading the model: {e}")
 
