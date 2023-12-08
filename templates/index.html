@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Draw</title>
+    <title>CS451_FinalProject</title>
     <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Draw</title>
+    <title>CS451_FinalProject</title>
     <style>
         body {
             text-align: center;
@@ -45,6 +45,22 @@
         .instructions {
             margin-bottom: 20px;
             color: #333333;
+        }
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image {
+            flex: 1;
+            text-align: center;
+        }
+
+        #canvas-container {
+            flex: 0 0 auto; /* don't grow or shrink */
+            padding: 0 100px; /* space between images and canvas */
         }
     </style>
     <script>
@@ -127,8 +143,20 @@
         <p>This is a user interface for the Tensorflow CNN model trained on the MNIST dataset from Assignment 3.</p>
         <p>Draw a number (0 - 9) in the box and push Predict Class to get a prediction from the CNN model.</p>
     </div>
-    <canvas id="canvas" width="280" height="280"></canvas>
-    <button id="save" class="button">Predict Class</button>
-    <button id="reset" class="button">Reset</button>
+    <div class="content">
+        <div class="image">
+            <img src="../static/NN_visual1.png" alt="NN Visual 1">
+        </div>
+        <div id="canvas-container">
+            <canvas id="canvas" width="280" height="280"></canvas>
+        </div>
+        <div class="image">
+            <img src="../static/NN_visual2.png" alt="NN Visual 2">
+        </div>
+    </div>
+    <div class="buttons">
+        <button id="save" class="button">Predict Class</button>
+        <button id="reset" class="button">Reset</button>
+    </div>
 </body>
 </html>
