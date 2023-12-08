@@ -3,6 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Draw</title>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Draw</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #canvas {
+            border: 1px solid #000000;
+        }
+
+        .button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #9f0000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #9f0000;
+        }
+
+        .instructions {
+            margin-bottom: 20px;
+            color: #333333;
+        }
+    </style>
     <script>
         window.onload = function() {
             var canvas = document.getElementById('canvas');
@@ -47,7 +91,7 @@
             function draw(ctx, x1, y1, x2, y2) {
                 ctx.beginPath();
                 ctx.strokeStyle = 'white'; // Drawing color
-                ctx.lineWidth = 12; // Line width
+                ctx.lineWidth = 18; // Line width
                 ctx.moveTo(x1, y1);
                 ctx.lineTo(x2, y2);
                 ctx.stroke();
@@ -79,8 +123,12 @@
     </script>
 </head>
 <body>
-    <canvas id="canvas" width="280" height="280" style="border:1px solid #000000;"></canvas>
-    <button id="save">Save</button>
-    <button id="reset">Reset</button>
+    <div class="instructions">
+        <p>This is a user interface for the Tensorflow CNN model trained on the MNIST dataset from Assignment 3.</p>
+        <p>Draw a number (0 - 9) in the box and push Predict Class to get a prediction from the CNN model.</p>
+    </div>
+    <canvas id="canvas" width="280" height="280"></canvas>
+    <button id="save" class="button">Predict Class</button>
+    <button id="reset" class="button">Reset</button>
 </body>
 </html>
