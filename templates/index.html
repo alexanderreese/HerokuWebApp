@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Draw</title>
+    <script>
+        window.onload = function() {
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+
+            // Function to set a white background for the canvas
+            function resetCanvas() {
+                ctx.fillStyle = 'black';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
+
+            // Initialize canvas with a white background
+            resetCanvas();
+
+            var drawing = false;
+            var prevX = 0, prevY = 0;
+
+            canvas.addEventListener('mousedown', function(e) {
+                drawing = true;
+                prevX = e.clientX - canvas.offsetLeft;
+                prevY = e.clientY - canvas.offsetTop;
+            });
+
+            canvas.addEventListener('mousemove', function(e) {
+                if (drawing) {
+                    var currX = e.clientX - canvas.offsetLeft;
+                    var currY = e.clientY - canvas.offsetTop;
+                    draw(ctx, prevX, prevY, currX, currY);
+                    prevX = currX;
+                    prevY = currY;
+                }
+            });
+
+            canvas.addEventListener('mouseup', function(e) {
+                drawing = false;
+            });
+
+            canvas.addEventListener('mouseout', function(e) {
+                drawing = false;
+            });
+
+            function draw(ctx, x1, y1, x2, y2) {
+                ctx.beginPath();
+                ctx.strokeStyle = 'white'; // Drawing color
+                ctx.lineWidth = 12; // Line width
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.stroke();
+                ctx.closePath();
+            }
+
+            // Reset button event handler
+            document.getElementById('reset').addEventListener('click', function() {
+                resetCanvas();
+            });
+
+            // Save button event handler
+            document.getElementById('save').addEventListener('click', function() {
+                var imgData = canvas.toDataURL();
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/save', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.send('imgData=' + encodeURIComponent(imgData));
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        var response = xhr.responseText; // Get the response text from the server
+                        alert(response); // Display the server response in the alert
+                    } else {
+                        alert('Error saving image: ' + xhr.status); // Display error if status is not 200
+                    }
+                };
+            });
+        };
+    </script>
+</head>
+<body>
+    <canvas id="canvas" width="280" height="280" style="border:1px solid #000000;"></canvas>
+    <button id="save">Save</button>
+    <button id="reset">Reset</button>
+</body>
+</html>
